@@ -45,5 +45,8 @@ main{
 .degree-section h2{
     font-size: 40px;
 }
-
+sup{
+    font-size: 25px;
+    padding-left: 5px;
+}
 
