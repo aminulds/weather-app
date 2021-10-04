@@ -1,4 +1,5 @@
 window.addEventListener('load', () => {
+    //access geo location data
     let lon;
     let lat;
 
@@ -9,6 +10,7 @@ window.addEventListener('load', () => {
     const temSummery = document.querySelector('.temperature-description');
     const unit = document.getElementById('unit');
     const degreeSection = document.querySelector('.degree-section');
+
     //Check geo location browser permission
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -21,14 +23,15 @@ window.addEventListener('load', () => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 //collect data
                 const {temp} = data.main;
                 const {description, icon} = data.weather[0];
                 const {country} = data.sys;
+
                 // temperature convert
                 const celsius = (temp - 273.15).toFixed(2);
                 const fahrenheit = (celsius * (9 / 5) + 32).toFixed(2);
+
                 // change Weather unit
                 degreeSection.addEventListener('click', () => {
                     // check weather unit
@@ -40,8 +43,8 @@ window.addEventListener('load', () => {
                         unit.textContent = 'C';
                         tempValue.textContent = celsius;
                     }
-                })
-                
+                });
+
                 //show data on html page
                 locationTimezone.textContent = country;
                 weatherIcon.innerHTML = `<img src="icons/${icon}.png" alt="Weather Icon">`;
